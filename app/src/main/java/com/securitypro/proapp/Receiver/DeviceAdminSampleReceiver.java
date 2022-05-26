@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 /**
- * Created by Chetna on 28-Mar-18.
+ * Created by Appcrafter on 28-Mar-18.
  */
 
 public class DeviceAdminSampleReceiver extends DeviceAdminReceiver {

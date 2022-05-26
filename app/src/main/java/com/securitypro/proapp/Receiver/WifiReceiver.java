@@ -14,7 +14,7 @@ import com.securitypro.proapp.Service.appService;
 import com.securitypro.proapp.Utility.SavePref;
 
 /**
- * Created by Chetna on 28-Mar-18.
+ * Created by Appcrafter on 28-Mar-18.
  */
 
 public class WifiReceiver extends BroadcastReceiver {

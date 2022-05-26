@@ -15,7 +15,7 @@ import com.securitypro.proapp.R;
 import java.util.List;
 
 /**
- * Created by Chetna on 27-Mar-18.
+ * Created by Appcrafter on 27-Mar-18.
  */
 
 public class DeleteAdapter extends RecyclerView.Adapter<DeleteAdapter.MyAllPermission> {

@@ -22,6 +22,7 @@ import com.securitypro.proapp.Fragment.hiddenFragment;
 import com.securitypro.proapp.Fragment.permissionFragment;
 import com.securitypro.proapp.Fragment.appSecureFragment;
 import com.securitypro.proapp.R;
+import com.securitypro.proapp.Service.appService;
 
 public class MainActivity extends FragmentActivity {
 
@@ -42,6 +43,9 @@ public class MainActivity extends FragmentActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        Intent intent = new Intent(this, appService.class);
+        intent.setAction("WiFis");
+        this.startService(intent);
     }
 
     private void setupViewPager(ViewPager viewPager) {

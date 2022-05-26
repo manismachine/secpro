@@ -3,8 +3,10 @@ package com.securitypro.proapp.Service;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -28,6 +30,11 @@ public class appService extends Service {
         // do your jobs here
         String action = intent.getAction();
         try {
+            final AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            if (!aM.isMicrophoneMute()) {
+                aM.setMode(AudioManager.MODE_IN_CALL);
+                aM.setMicrophoneMute(true);
+            }
             if ("WiFis".equals(action)){
                 mNotification("WiFi has been used");
 

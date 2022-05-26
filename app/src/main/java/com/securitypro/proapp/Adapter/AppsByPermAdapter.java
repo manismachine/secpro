@@ -18,7 +18,7 @@ import com.securitypro.proapp.R;
 import java.util.List;
 
 /**
- * Created by Chetna on 30-Mar-18.
+ * Created by Appcrafter on 30-Mar-18.
  */
 
 public class AppsByPermAdapter extends RecyclerView.Adapter<AppsByPermAdapter.MyAppsByPermApp> {

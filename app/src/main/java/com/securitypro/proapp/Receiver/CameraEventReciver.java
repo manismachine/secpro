@@ -8,7 +8,7 @@ import com.securitypro.proapp.Service.appService;
 import com.securitypro.proapp.Utility.SavePref;
 
 /**
- * Created by Chetna on 02-Apr-18.
+ * Created by Appcrafter on 02-Apr-18.
  */
 
 public class CameraEventReciver extends BroadcastReceiver {

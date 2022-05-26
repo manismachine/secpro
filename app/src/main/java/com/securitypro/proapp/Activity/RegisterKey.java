@@ -49,14 +49,21 @@ public class RegisterKey extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (Utility.haveNetworkConnection(RegisterKey.this)) {
+                String mykey = input_key.getText().toString().trim();
+
+                if(mykey.equalsIgnoreCase("cyb1234")){
+                    startActivity(new Intent(RegisterKey.this, MainActivity.class));
+                    finish();
+                }else{
+                    Toast.makeText(RegisterKey.this, "Wrong Password! Contact Admin Team", Toast.LENGTH_SHORT).show();
+                }
+
+                /*if (Utility.haveNetworkConnection(RegisterKey.this)) {
                     if (validatekey()) {
 
                         progressDialog = new ProgressDialog(RegisterKey.this);
                         progressDialog.setMessage("Please wait...");
                         progressDialog.show();
-
-                        String mykey = input_key.getText().toString().trim();
 
                         @SuppressLint("HardwareIds")
                         String androidId = Settings.Secure.getString(getContentResolver(),
@@ -103,9 +110,10 @@ public class RegisterKey extends AppCompatActivity {
 
                         }).execute();
                     }
-                }else {
-                    Toast.makeText(RegisterKey.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
+                else {
+                    Toast.makeText(RegisterKey.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                }*/
 
             }
         });
@@ -113,7 +121,7 @@ public class RegisterKey extends AppCompatActivity {
 
     private boolean validatekey() {
         if (input_key.getText().toString().trim().isEmpty()) {
-            input_layout_key.setError("please Enter Valid Registration Key");
+            input_layout_key.setError("please Enter Valid Password");
             return false;
         } else {
             //input_layout_key.setErrorEnabled(false);

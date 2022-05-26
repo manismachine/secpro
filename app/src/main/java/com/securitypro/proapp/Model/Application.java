@@ -1,7 +1,7 @@
 package com.securitypro.proapp.Model;
 
 /**
- * Created by Chetna on 10-Mar-18.
+ * Created by Appcrafter on 10-Mar-18.
  */
 import android.graphics.drawable.Drawable;
 

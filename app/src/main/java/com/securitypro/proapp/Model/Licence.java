@@ -1,7 +1,7 @@
 package com.securitypro.proapp.Model;
 
 /**
- * Created by Chetna on 23-Dec-17.
+ * Created by Appcrafter on 23-Dec-17.
  */
 
 public class Licence {

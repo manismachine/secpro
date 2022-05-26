@@ -1,7 +1,7 @@
 package com.securitypro.proapp.Model;
 
 /**
- * Created by Chetna on 01-Apr-18.
+ * Created by Appcrafter on 01-Apr-18.
  */
 
 public class SwitchModel {

@@ -33,9 +33,9 @@ public class Splash extends Activity {
 
         savePref = new SavePref(this);
 
-        if (Utility.haveNetworkConnection(this)){
+        /*if (Utility.haveNetworkConnection(this)){
             checkLicenceById();
-        }
+        }*/
 
         if (Build.VERSION.SDK_INT >= 23) {
             //requestPermissions();
@@ -51,7 +51,7 @@ public class Splash extends Activity {
             @Override
             public void run() {
 
-                if (savePref.checkLicense()) {
+                /*if (savePref.checkLicense()) {
                     startActivity(new Intent(Splash.this, MainActivity.class));
                     finish();
                 } else {
@@ -59,7 +59,10 @@ public class Splash extends Activity {
                     //startActivity(new Intent(Splash.this, RegisterKey.class));
                     startActivity(new Intent(Splash.this, MainActivity.class));
                     finish();
-                }
+                }*/
+
+                startActivity(new Intent(Splash.this, RegisterKey.class));
+                finish();
             }
         }, 2000);
     }

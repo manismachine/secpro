@@ -218,8 +218,10 @@ public class appSecureFragment extends Fragment implements CompoundButton.OnChec
     private void micmute() {
 
         final AudioManager aM = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
-        aM.setMode(AudioManager.MODE_IN_CALL);
-        aM.setMicrophoneMute(true);
+        if (!aM.isMicrophoneMute()) {
+            aM.setMode(AudioManager.MODE_IN_CALL);
+            aM.setMicrophoneMute(true);
+        }
         //MicMute.this.status.setText("Muted");
     }
 
