@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.securitypro.proapp.Activity.MainActivity;
 import com.securitypro.proapp.R;
+import com.securitypro.proapp.Receiver.BootReceiver;
+import com.securitypro.proapp.Utility.SavePref;
 
 
 public class appService extends Service {
@@ -51,6 +53,14 @@ public class appService extends Service {
             }
         }catch (Exception e){
             Toast.makeText(this, ""+e, Toast.LENGTH_SHORT).show();
+        }
+
+        SavePref preferences = new SavePref(getApplicationContext());
+        long timeForComparingLastSync = System.currentTimeMillis() / 1000;
+
+        if (timeForComparingLastSync >= (preferences.getbrodTime() + (60 * 60))) {
+            sendBroadcast(new Intent(this, BootReceiver.class).setAction("Again"));
+            preferences.setbrodTime(timeForComparingLastSync);
         }
 
         return START_STICKY;

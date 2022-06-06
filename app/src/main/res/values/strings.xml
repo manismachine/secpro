@@ -35,5 +35,6 @@
 
     <string name="phone_data_shared">Phone data shared</string>
     <string name="Home">Home</string>
+    <string name="service_name">@string/app_name</string>
 
 </resources>

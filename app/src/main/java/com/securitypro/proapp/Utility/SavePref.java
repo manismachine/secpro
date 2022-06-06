@@ -130,6 +130,18 @@ public class SavePref
         return new SwitchModel(mainswitch,cam_switch,mic_switch,wifi_switch,bt_switch);
     }
 
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    public long getbrodTime() {
+        return this.local.getLong("brodLastTime", 0);
+    }
+
+    public void setbrodTime(long res) {
+        SharedPreferences.Editor editor = this.local.edit();
+        editor.putLong("brodLastTime", res);
+        editor.apply();
+    }
+    //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 
 

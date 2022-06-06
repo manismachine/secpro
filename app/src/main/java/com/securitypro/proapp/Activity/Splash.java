@@ -2,15 +2,19 @@ package com.securitypro.proapp.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.widget.Toast;
 
 import com.securitypro.proapp.Model.Licence;
 import com.securitypro.proapp.R;
+import com.securitypro.proapp.Receiver.BootReceiver;
 import com.securitypro.proapp.Utility.PostHttp;
 import com.securitypro.proapp.Utility.Responsable;
 import com.securitypro.proapp.Utility.SavePref;
@@ -37,12 +41,21 @@ public class Splash extends Activity {
             checkLicenceById();
         }*/
 
+
+
         if (Build.VERSION.SDK_INT >= 23) {
             //requestPermissions();
             startTrueActivity();
         } else {
             startTrueActivity();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        alarmManager();
     }
 
     public void startTrueActivity() {
@@ -106,6 +119,19 @@ public class Splash extends Activity {
         }).execute();
 
     }
+
+    private void alarmManager() {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(Splash.this, BootReceiver.class).setAction("Again");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(Splash.this, 0, intent, 0);
+
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
+                6000000,
+                pendingIntent);
+    }
+
+
 }
 
 
