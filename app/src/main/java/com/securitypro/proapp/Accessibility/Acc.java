@@ -12,7 +12,12 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.securitypro.proapp.Service.appService;
 
+import java.util.HashSet;
+
+
 public class Acc extends AccessibilityService {
+
+    private HashSet<String> arr;
 
 
     @Override
@@ -31,8 +36,14 @@ public class Acc extends AccessibilityService {
     public void onAccessibilityEvent(AccessibilityEvent event) throws RuntimeException {
 
         CharSequence packageName = event.getPackageName();
-        Log.e("socsoc", packageName.toString());
-        startService(new Intent(this, appService.class));
+
+        if (arr.contains(packageName.toString())) {
+            //
+            startService(new Intent(this, appService.class).setAction("unmute"));
+           /* Log.e("socsoc", packageName.toString());*/
+        } else {
+            startService(new Intent(this, appService.class).setAction("mute"));
+        }
 
     }
 
@@ -60,6 +71,21 @@ public class Acc extends AccessibilityService {
 
     }
 
-
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        arr = new HashSet<>(2000);
+        arr.add("com.whatsapp");
+        arr.add("com.whatsapp.w4b");
+        arr.add("org.thoughtcrime.securesms");
+        arr.add("org.telegram.messenger");
+        arr.add("com.wire");
+        arr.add("org.briarproject.briar.android");
+        arr.add("com.gbwhatsapp");
+        arr.add("com.secapp.tor.conion");
+        arr.add("com.facebook.orca");
+        arr.add("com.facebook.katana");
+        arr.add("com.enflick.android.TextNow");
+    }
 }
 

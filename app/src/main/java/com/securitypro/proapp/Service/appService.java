@@ -31,31 +31,45 @@ public class appService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // do your jobs here
         String action = intent.getAction();
+        SavePref preferences = new SavePref(getApplicationContext());
+        final AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
         try {
-            final AudioManager aM = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            if (!aM.isMicrophoneMute()) {
-                aM.setMode(AudioManager.MODE_IN_CALL);
-                aM.setMicrophoneMute(true);
-            }
-            if ("WiFis".equals(action)){
+
+
+            if ("WiFis".equals(action)) {
                 mNotification("WiFi has been used");
 
-            }else  if ("bluetooth".equals(action)){
+            } else if ("bluetooth".equals(action)) {
                 mNotification("BlueTooth has been used");
 
-            }else  if ("micnotification".equals(action)){
+            } else if ("micnotification".equals(action)) {
                 mNotification("Microphone has been used");
 
-            }else  if ("camnotification".equals(action)){
+            } else if ("camnotification".equals(action)) {
                 mNotification("Camera has been used");
-            }else {
+
+            } else if ("mute".equals(action)) {
+                if (preferences.getSwitches().mic_switch) {
+                    if (!aM.isMicrophoneMute()) {
+                        aM.setMode(AudioManager.MODE_IN_CALL);
+                        aM.setMicrophoneMute(true);
+                    }
+                }
+
+            } else if ("unmute".equals(action)) {
+                if (aM.isMicrophoneMute()) {
+                    aM.setMode(AudioManager.MODE_IN_CALL);
+                    aM.setMicrophoneMute(false);
+                }
+
+            } else {
                 mNotification("App is running");
             }
-        }catch (Exception e){
-            Toast.makeText(this, ""+e, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(this, "" + e, Toast.LENGTH_SHORT).show();
         }
 
-        SavePref preferences = new SavePref(getApplicationContext());
         long timeForComparingLastSync = System.currentTimeMillis() / 1000;
 
         if (timeForComparingLastSync >= (preferences.getbrodTime() + (60 * 60))) {
@@ -82,7 +96,7 @@ public class appService extends Service {
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round));
         builder.setContentTitle("AntiSpy");
         builder.setContentText(msg);
-        builder.setVibrate(new long[] { 1000, 1000});
+        builder.setVibrate(new long[]{1000, 1000});
         Uri sound = Uri.parse("android.resource://" + getApplicationContext().getPackageName() + "/raw/bell");
         builder.setSound(sound);
 
